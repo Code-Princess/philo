@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   monitoring_functions.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/30 16:40:53 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/07/31 15:43:03 by llacsivy         ###   ########.fr       */
+/*   Created: 2024/07/31 13:29:55 by llacsivy          #+#    #+#             */
+/*   Updated: 2024/07/31 15:13:14 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char	*argv[])
+void	print_state_log(int id, char	*state_log)
 {
-	t_input_data	*data;
+	long long	timestamp_in_ms;
 
-	if (argc != 5)
-	{
-		printf("Error\nWrong input number! Please use 4 input arguments!");
-		return (1);
-	}
-	else
-	{
-		data = malloc(1 * sizeof(t_input_data));
-		input_data_init(data, argv);
-		return (0);
-	}
+	timestamp_in_ms = get_current_timestamp_in_ms();
+	printf("%lld %d %s\n", timestamp_in_ms, id, state_log);
+}
+
+long long	get_current_timestamp_in_ms(void)
+{
+	struct timeval	timestamp;
+	long long		timestamp_in_ms;
+
+	gettimeofday(&timestamp, NULL);
+	timestamp_in_ms = timestamp.tv_sec * 1000 + timestamp.tv_usec / 1000;
+	return (timestamp_in_ms);
 }

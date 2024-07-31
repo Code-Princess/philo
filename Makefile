@@ -6,13 +6,14 @@
 #    By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/30 16:41:26 by llacsivy          #+#    #+#              #
-#    Updated: 2024/07/30 17:26:39 by llacsivy         ###   ########.fr        #
+#    Updated: 2024/07/31 15:37:48 by llacsivy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	philo
-CFLAGS		=	-Wall -Wextra -Werror
-SRCS		=	philo.c
+CFLAGS		=	-Wall -Wextra -Werror -pthread
+SRCS		=	philo.c monitoring_functions.c init_functions.c \
+				utils_functions.c 
 OBJS 		=	${SRCS:.c=.o}
 %.o : %.c
 	cc -g $(CFLAGS) -c $< -o $@
