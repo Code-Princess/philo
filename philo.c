@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:40:53 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/07/31 15:43:03 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/07/31 16:57:02 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	main(int argc, char	*argv[])
 
 	if (argc != 5)
 	{
-		printf("Error\nWrong input number! Please use 4 input arguments!");
+		printf("Error\nWrong input number! To run the program please use:\n./philo [number_of_philosophers] [time_to_die] \
+	[time_to_eat] [time_to_sleep]\n");
 		return (1);
 	}
 	else
