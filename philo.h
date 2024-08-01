@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/07/31 15:39:21 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:49:47 by linda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <sys/time.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <limits.h>
 
 typedef struct s_philo
 {
@@ -35,5 +36,9 @@ typedef struct s_input_data
 long long	get_current_timestamp_in_ms(void);
 void		print_state_log(int id, char	*state_log);
 void		input_data_init(t_input_data *data, char **input_argv);
+int			ft_isspace(int c);
+int			ft_isdigit(int c);
 int			ft_atoi(const char *str);
+long		ft_atol(char *str);
+int			input_check(char **input_argv);
 #endif
