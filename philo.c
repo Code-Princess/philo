@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
+/*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:40:53 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/01 13:59:53 by linda            ###   ########.fr       */
+/*   Updated: 2024/08/02 16:43:49 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int argc, char	*argv[])
 {
 	t_input_data	*data;
+	t_philo			*philosophers;
 
 	if (argc != 5)
 	{
@@ -24,18 +25,16 @@ int	main(int argc, char	*argv[])
 	}
 	else
 	{
-		if(input_check(argv) == 0)
+		if (input_check(argv) == 0)
 		{
-			if (ft_atoi(argv[1]) >= 1)
-			{
-				data = malloc(1 * sizeof(t_input_data));
-				input_data_init(data, argv);
-				printf("valid input\n");
-				return (0);
-			}
+			data = malloc(1 * sizeof(t_input_data));
+			if (data == NULL)
+				return (1);
+			input_data_init(data, argv);
+			philosophers = philos_init(data->number_of_philosophers);
+			return (free(data), 0);
 		}
 		else
 			return (printf("Error\nInvalid input arguments\n"), 1);
-
 	}
 }

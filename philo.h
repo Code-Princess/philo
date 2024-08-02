@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
+/*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/01 13:49:47 by linda            ###   ########.fr       */
+/*   Updated: 2024/08/02 13:58:26 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ int			ft_isdigit(int c);
 int			ft_atoi(const char *str);
 long		ft_atol(char *str);
 int			input_check(char **input_argv);
+t_philo		*philos_init(int nbr_of_philos);
 #endif

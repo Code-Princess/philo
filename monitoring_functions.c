@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:29:55 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/07/31 15:13:14 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/02 13:15:17 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ long long	get_current_timestamp_in_ms(void)
 	long long		timestamp_in_ms;
 
 	gettimeofday(&timestamp, NULL);
-	timestamp_in_ms = timestamp.tv_sec * 1000 + timestamp.tv_usec / 1000;
+	timestamp_in_ms = (timestamp.tv_sec * 1000) + (timestamp.tv_usec / 1000);
 	return (timestamp_in_ms);
 }
