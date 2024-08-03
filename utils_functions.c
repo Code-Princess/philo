@@ -6,11 +6,11 @@
 /*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:32:26 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/01 13:52:26 by linda            ###   ########.fr       */
+/*   Updated: 2024/08/03 15:06:51 by linda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isspace(int c)
+int	ft_isspace(int c)
 {
 	char	cast_c;
 
@@ -54,6 +54,7 @@ int	ft_atoi(const char *str)
 	number *= sign;
 	return (number);
 }
+
 long	ft_atol(char *str)
 {
 	long	number;

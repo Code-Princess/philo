@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/02 13:58:26 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/03 22:43:17 by linda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 
 typedef struct s_philo
 {
-	int	id_nr;	
+	int			id_nr;	
+	pthread_t	thread;
 }	t_philo;
 
 typedef struct s_input_data
@@ -42,4 +43,5 @@ int			ft_atoi(const char *str);
 long		ft_atol(char *str);
 int			input_check(char **input_argv);
 t_philo		*philos_init(int nbr_of_philos);
+int			create_philo_threads(t_philo *philos, t_input_data *input_data);
 #endif

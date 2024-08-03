@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:40:53 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/02 16:43:49 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/03 22:02:58 by linda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(int argc, char	*argv[])
 {
-	t_input_data	*data;
-	t_philo			*philosophers;
+	static t_input_data		*data;
+	static t_philo			*philosophers;
 
 	if (argc != 5)
 	{
@@ -32,7 +32,8 @@ int	main(int argc, char	*argv[])
 				return (1);
 			input_data_init(data, argv);
 			philosophers = philos_init(data->number_of_philosophers);
-			return (free(data), 0);
+			return (free(data), data = NULL, \
+				free(philosophers), philosophers = NULL, 0);
 		}
 		else
 			return (printf("Error\nInvalid input arguments\n"), 1);
