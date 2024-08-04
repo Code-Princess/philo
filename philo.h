@@ -6,7 +6,7 @@
 /*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/03 22:43:17 by linda            ###   ########.fr       */
+/*   Updated: 2024/08/04 11:55:45 by linda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ int			ft_atoi(const char *str);
 long		ft_atol(char *str);
 int			input_check(char **input_argv);
 t_philo		*philos_init(int nbr_of_philos);
-int			create_philo_threads(t_philo *philos, t_input_data *input_data);
+int			create_philo_threads(t_philo *philos, int nr_of_philos);
+void		*routine(void *arg);
 #endif
