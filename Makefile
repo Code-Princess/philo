@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: linda <linda@student.42.fr>                +#+  +:+       +#+         #
+#    By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/30 16:41:26 by llacsivy          #+#    #+#              #
-#    Updated: 2024/08/04 21:02:23 by linda            ###   ########.fr        #
+#    Updated: 2024/08/05 10:56:12 by llacsivy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,9 @@ OBJS 		=	${SRCS:.c=.o}
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
-	cc $(CFLAGS) $(OBJS) -o $(NAME) /home/linda/LeakSanitizer/liblsan.so
-# cc $(CFLAGS) $(OBJS) -o $(NAME) /Users/llacsivy/LeakSanitizer/liblsan.dylib
-# cc $(CFLAGS) $(OBJS) -o $(NAME)
+#	cc $(CFLAGS) $(OBJS) -o $(NAME) /home/linda/LeakSanitizer/liblsan.so
+#	cc $(CFLAGS) $(OBJS) -o $(NAME) /Users/llacsivy/LeakSanitizer/liblsan.dylib
+	cc $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)

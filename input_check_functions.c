@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:47:40 by linda             #+#    #+#             */
-/*   Updated: 2024/08/02 15:58:49 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/05 10:20:45 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	input_check(char **input_argv)
 		else
 			return (1);
 	}
-	if (ft_atoi(input_argv[1]) < 1)
+	if (ft_atoi(input_argv[1]) < 1 || ft_atoi(input_argv[1]) > 200)
 		return (1);
 	return (0);
 }
