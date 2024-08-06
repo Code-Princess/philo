@@ -6,13 +6,13 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:14:00 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/06 10:50:29 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/06 13:07:52 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_input_data	*input_data_init(char **input_argv)
+t_input_data	*input_data_init(int argc, char **input_argv)
 {
 	t_input_data	*data;
 
@@ -24,7 +24,11 @@ t_input_data	*input_data_init(char **input_argv)
 	data->time_to_die = ft_atoi(input_argv[2]);
 	data->time_to_eat = ft_atoi(input_argv[3]);
 	data->time_to_sleep = ft_atoi(input_argv[4]);
+	data->number_of_times_each_philosopher_must_eat = 0;
 	data->start_time = get_current_timestamp_in_ms();
+	if (argc == 6)
+		data->number_of_times_each_philosopher_must_eat = \
+		ft_atoi(input_argv[5]);
 	return (data);
 }
 

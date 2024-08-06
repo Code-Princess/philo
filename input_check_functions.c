@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:47:40 by linda             #+#    #+#             */
-/*   Updated: 2024/08/05 10:20:45 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:42:56 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ int	check_nbr_in_range(long nbr)
 		return (1);
 }
 
-int	input_check(char **input_argv)
+int	input_check(int argc, char **input_argv)
 {
 	int	i;
 
 	i = 1;
-	while (i < 5)
+	while (i < argc)
 	{
 		if (check_str_nbr(input_argv[i]) == 0)
 		{
