@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:14:00 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/05 13:01:16 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/06 10:50:29 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_input_data	*input_data_init(char **input_argv)
 	data->time_to_die = ft_atoi(input_argv[2]);
 	data->time_to_eat = ft_atoi(input_argv[3]);
 	data->time_to_sleep = ft_atoi(input_argv[4]);
-	data->forks = malloc(sizeof(pthread_mutex_t) * data->number_of_forks);
 	data->start_time = get_current_timestamp_in_ms();
 	return (data);
 }
@@ -60,7 +59,7 @@ t_philo	*philos_init(int nbr_of_philos)
 	while (i < nbr_of_philos)
 	{
 		philos[i].id_nr = i + 1;
-		philos[i].is_dead = 0;
+		philos[i].has_died = 0;
 		philos[i].nr_of_meals = 0;
 		i++;
 	}
@@ -68,7 +67,19 @@ t_philo	*philos_init(int nbr_of_philos)
 	return (philos);
 }
 
-pthread_mutex_t	*forks_init()
+pthread_mutex_t	*forks_init(int nr_of_forks)
 {
-	
+	pthread_mutex_t	*forks;
+	int				i;
+
+	i = 0;
+	forks = malloc(sizeof(pthread_mutex_t) * nr_of_forks);
+	if (forks == NULL)
+		return (NULL);
+	while (i < nr_of_forks)
+	{
+		pthread_mutex_init(&forks[i], NULL);
+		i++;
+	}
+	return (forks);
 }

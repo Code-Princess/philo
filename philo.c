@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:40:53 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/05 12:48:23 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/06 10:11:14 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ int	main(int argc, char	*argv[])
 			data = input_data_init(argv);
 			data->philos = philos_init(data->number_of_philosophers);
 			data->forks = forks_init(data->number_of_forks);
-			return (free(data), data = NULL, \
-				free(data->philos), data->philos = NULL, 0);
+			free_data(data);
 		}
 		else
 			return (printf("Error\nInvalid input arguments\n"), 1);

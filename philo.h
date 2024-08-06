@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/05 12:53:42 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/06 10:50:29 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_philo
 {
 	int				id_nr;
 	int				nr_of_meals;
-	int				is_dead;	
+	int				has_died;	
 	pthread_t		thread;
 	pthread_mutex_t	*fork_left;
 	pthread_mutex_t	*fork_right;
@@ -52,4 +52,7 @@ int					input_check(char **input_argv);
 t_philo				*philos_init(int nbr_of_philos);
 int					create_philo_threads(t_philo *philos, int nr_of_philos);
 void				*routine(void *arg);
+void				free_data(t_input_data	*input_data);
+pthread_mutex_t		*forks_init(int nr_of_forks);
+
 #endif
