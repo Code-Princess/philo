@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:40:53 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/06 13:06:43 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/07 17:31:42 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ int	main(int argc, char	*argv[])
 	{
 		if (input_check(argc, argv) == 0)
 		{
-			data = input_data_init(argc, argv);
-			data->philos = philos_init(data->number_of_philosophers);
-			data->forks = forks_init(data->number_of_forks);
+			data = input_data_init(argv);
+			data->philos = philos_init(data->number_of_philosophers, \
+				argc, argv, data);
+// printf("here\n");
 			free_data(data);
 		}
 		else
@@ -30,9 +31,7 @@ int	main(int argc, char	*argv[])
 	}
 	else
 	{
-		printf("Error\nWrong number of arguments! To run the program please use:\n\
-			./philo number_of_philosophers time_to_die time_to_eat time_to_sleep\
-			[number_of_times_each_philosopher_must_eat]\n");
+		printf("Error\nWrong number of arguments!\n");
 		return (1);
 	}
 }

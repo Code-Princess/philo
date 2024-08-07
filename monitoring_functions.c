@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:29:55 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/02 13:15:17 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/07 17:32:53 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,24 @@ void	print_state_log(int id, char	*state_log)
 	printf("%lld %d %s\n", timestamp_in_ms, id, state_log);
 }
 
-long long	get_current_timestamp_in_ms(void)
+u_int64_t	get_current_timestamp_in_ms(void)
 {
 	struct timeval	timestamp;
-	long long		timestamp_in_ms;
+	u_int64_t		timestamp_in_ms;
 
 	gettimeofday(&timestamp, NULL);
 	timestamp_in_ms = (timestamp.tv_sec * 1000) + (timestamp.tv_usec / 1000);
 	return (timestamp_in_ms);
+}
+
+void	print_mutex_lock(t_philo *philo, char *state_log)
+{
+	if (philo->has_died == 0)
+	{
+		if (pthread_mutex_trylock(&philo->print_mutex) == 0)
+		{
+			print_state_log(philo->id_nr, state_log);
+			pthread_mutex_unlock(&philo->print_mutex);
+		}
+	}
 }

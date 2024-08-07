@@ -6,29 +6,25 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:14:00 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/06 13:07:52 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/07 17:31:28 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_input_data	*input_data_init(int argc, char **input_argv)
+t_input_data	*input_data_init(char **input_argv)
 {
 	t_input_data	*data;
+	int				i;
 
+	i = 0;
 	data = malloc(1 * sizeof(t_input_data));
 	if (data == NULL)
 		return (NULL);
 	data->number_of_philosophers = ft_atoi(input_argv[1]);
 	data->number_of_forks = ft_atoi(input_argv[1]);
-	data->time_to_die = ft_atoi(input_argv[2]);
-	data->time_to_eat = ft_atoi(input_argv[3]);
-	data->time_to_sleep = ft_atoi(input_argv[4]);
-	data->number_of_times_each_philosopher_must_eat = 0;
 	data->start_time = get_current_timestamp_in_ms();
-	if (argc == 6)
-		data->number_of_times_each_philosopher_must_eat = \
-		ft_atoi(input_argv[5]);
+	data->forks = forks_init(data->number_of_forks);
 	return (data);
 }
 
@@ -51,7 +47,8 @@ int	create_philo_threads(t_philo *philos, int nr_of_philos)
 	return (0);
 }
 
-t_philo	*philos_init(int nbr_of_philos)
+t_philo	*philos_init(int nbr_of_philos, int argc, char **input_argv, \
+	t_input_data *data)
 {
 	int		i;
 	t_philo	*philos;
@@ -65,6 +62,22 @@ t_philo	*philos_init(int nbr_of_philos)
 		philos[i].id_nr = i + 1;
 		philos[i].has_died = 0;
 		philos[i].nr_of_meals = 0;
+		philos[i].time_to_die = ft_atoi(input_argv[2]);
+		philos[i].time_to_eat = ft_atoi(input_argv[3]);
+		philos[i].time_to_sleep = ft_atoi(input_argv[4]);
+		philos[i].number_of_times_each_philosopher_must_eat = 0;
+		if (argc == 6)
+			philos[i].number_of_times_each_philosopher_must_eat = \
+			ft_atoi(input_argv[5]);
+printf("here\n");
+		philos[i].fork_left = &data->forks[i];
+		if (philos[i].id_nr >= 1)
+			philos[i].fork_right = &data->forks[i - 1];
+		else
+			philos[i].fork_right = &data->forks[data->number_of_philosophers \
+			- 1];
+		pthread_mutex_init(&(philos[i].print_mutex), NULL);
+		pthread_mutex_init(&(philos[i].eat_mutex), NULL);
 		i++;
 	}
 	create_philo_threads(philos, nbr_of_philos);
