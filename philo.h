@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/08 12:19:53 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/08 13:21:49 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_philo
 	pthread_mutex_t	*fork_right;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	eat_mutex;
+	pthread_mutex_t	dead_mutex;
 	u_int64_t		time_to_die;
 	u_int64_t		time_to_eat;
 	u_int64_t		time_to_sleep;
@@ -67,5 +68,8 @@ void				sleeping(t_philo *philosopher);
 void				thinking(t_philo *philosopher);
 void				set_philosophers_init_values(int argc, char **input_argv, \
 					t_input_data *data, t_philo *philos);
+int					check_all_philosophers_ate(t_philo *philos, \
+					t_input_data *data);
+void				set_dead_mutex_lock(t_philo philosopher);
 
 #endif

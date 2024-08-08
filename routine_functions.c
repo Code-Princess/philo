@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:46:59 by linda             #+#    #+#             */
-/*   Updated: 2024/08/08 12:06:52 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/08 13:35:52 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	*routine(void *arg)
 		sleeping(philo);
 		thinking(philo);
 	}
-	print_state_log(philo->id_nr, "is thinking");
-	print_state_log(philo->id_nr, "died");
+	print_mutex_lock(philo, "died");
 	return (NULL);
 }
 
