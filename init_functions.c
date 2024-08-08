@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:14:00 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/07 17:31:28 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:23:28 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,23 @@ int	create_philo_threads(t_philo *philos, int nr_of_philos)
 t_philo	*philos_init(int nbr_of_philos, int argc, char **input_argv, \
 	t_input_data *data)
 {
-	int		i;
-	t_philo	*philos;
+	static t_philo	*philos;
 
-	i = 0;
 	philos = malloc(sizeof(t_philo) * nbr_of_philos);
 	if (philos == NULL)
 		return (NULL);
-	while (i < nbr_of_philos)
+	set_philosophers_init_values(argc, input_argv, data, philos);
+	create_philo_threads(philos, nbr_of_philos);
+	return (philos);
+}
+
+void	set_philosophers_init_values(int argc, char **input_argv, \
+	t_input_data *data, t_philo *philos)
+{
+	int		i;
+
+	i = 0;
+	while (i < data->number_of_philosophers)
 	{
 		philos[i].id_nr = i + 1;
 		philos[i].has_died = 0;
@@ -69,7 +78,6 @@ t_philo	*philos_init(int nbr_of_philos, int argc, char **input_argv, \
 		if (argc == 6)
 			philos[i].number_of_times_each_philosopher_must_eat = \
 			ft_atoi(input_argv[5]);
-printf("here\n");
 		philos[i].fork_left = &data->forks[i];
 		if (philos[i].id_nr >= 1)
 			philos[i].fork_right = &data->forks[i - 1];
@@ -80,8 +88,6 @@ printf("here\n");
 		pthread_mutex_init(&(philos[i].eat_mutex), NULL);
 		i++;
 	}
-	create_philo_threads(philos, nbr_of_philos);
-	return (philos);
 }
 
 pthread_mutex_t	*forks_init(int nr_of_forks)

@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/07 17:25:04 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:19:53 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,11 @@ void				*routine(void *arg);
 void				free_data(t_input_data	*input_data);
 pthread_mutex_t		*forks_init(int nr_of_forks);
 void				print_mutex_lock(t_philo *philo, char *state_log);
-void				eat(t_philo *philosopher);
+void				eating(t_philo *philosopher);
 void				ft_usleep(u_int64_t time_to_do_sth);
+void				sleeping(t_philo *philosopher);
+void				thinking(t_philo *philosopher);
+void				set_philosophers_init_values(int argc, char **input_argv, \
+					t_input_data *data, t_philo *philos);
 
 #endif

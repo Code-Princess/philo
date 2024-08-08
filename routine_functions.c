@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:46:59 by linda             #+#    #+#             */
-/*   Updated: 2024/08/07 17:33:16 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:06:52 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,16 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	while (philo->has_died == 0)
 	{
-		eat(philo);
+		eating(philo);
+		sleeping(philo);
+		thinking(philo);
 	}
-	print_state_log(philo->id_nr, "is sleeping");
 	print_state_log(philo->id_nr, "is thinking");
 	print_state_log(philo->id_nr, "died");
 	return (NULL);
 }
 
-void	eat(t_philo *philosopher)
+void	eating(t_philo *philosopher)
 {
 	if (pthread_mutex_trylock(philosopher->fork_left) == 0)
 	{
@@ -56,4 +57,15 @@ void	ft_usleep(u_int64_t time_to_do_sth)
 	start_timestamp = get_current_timestamp_in_ms();
 	while (get_current_timestamp_in_ms() - start_timestamp < time_to_do_sth)
 		usleep(100);
+}
+
+void	sleeping(t_philo *philosopher)
+{
+	print_mutex_lock(philosopher, "is sleeping");
+	ft_usleep(philosopher->time_to_sleep);
+}
+
+void	thinking(t_philo *philosopher)
+{
+	print_mutex_lock(philosopher, "is thinking");
 }
