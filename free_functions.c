@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 13:06:45 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/06 10:39:26 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/18 11:32:40 by linda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	free_data(t_input_data	*input_data)
+/* void	free_data(t_input_data	*input_data) //TODO
 {
 	int	i;
 
@@ -29,3 +29,4 @@ void	free_data(t_input_data	*input_data)
 	input_data->forks = NULL;
 	input_data = NULL;
 }
+ */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:40:53 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/08 12:23:49 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/18 13:04:07 by linda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int	main(int argc, char	*argv[])
 			data = input_data_init(argv);
 			data->philos = philos_init(data->number_of_philosophers, \
 				argc, argv, data);
-			free_data(data);
-		}
+			create_dead_checker_thread(data);
+			// free_data(data); TODO: free functions
+ 		}
 		else
 			return (printf("Error\nInvalid input arguments\n"), 1);
 	}

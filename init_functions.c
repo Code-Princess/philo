@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:14:00 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/08 12:23:28 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/18 13:41:11 by linda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 t_input_data	*input_data_init(char **input_argv)
 {
 	t_input_data	*data;
-	int				i;
 
-	i = 0;
 	data = malloc(1 * sizeof(t_input_data));
 	if (data == NULL)
 		return (NULL);
