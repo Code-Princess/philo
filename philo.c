@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
+/*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:40:53 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/20 11:17:30 by linda            ###   ########.fr       */
+/*   Updated: 2024/08/20 20:53:42 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-#include "dev_helper_functions.h"
+// #include "dev_helper_functions.h"
 
 int	main(int argc, char	*argv[])
 {
@@ -25,6 +25,11 @@ int	main(int argc, char	*argv[])
 			data = input_data_init(argv);
 			data->philos = philos_init(data->number_of_philosophers, argc, argv, data);
 			create_dead_checker_thread(data);
+			if (data->stop_simulation == 1)
+			{
+				return (0);
+			}
+			
 			// free_data(data); TODO: free functions
  		}
 		else

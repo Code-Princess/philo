@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: linda <linda@student.42.fr>                +#+  +:+       +#+         #
+#    By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/30 16:41:26 by llacsivy          #+#    #+#              #
-#    Updated: 2024/08/20 10:51:13 by linda            ###   ########.fr        #
+#    Updated: 2024/08/20 18:10:16 by llacsivy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,8 @@ NAME		:=	philo
 CFLAGS		=	-Wall -Wextra -Werror -pthread
 SRCS		:=	philo.c monitoring_functions.c init_functions.c \
 				utils_functions.c input_check_functions.c routine_functions.c \
-				free_functions.c monitoring_check_functions.c die_functions.c \
-				dev_helper_functions.c 
+				free_functions.c monitoring_check_functions.c die_functions.c 
+				
 OBJS 		=	${SRCS:.c=.o}
 %.o : %.c
 	cc -g $(CFLAGS)  -c $< -o $@

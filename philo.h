@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
+/*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/20 12:49:01 by linda            ###   ########.fr       */
+/*   Updated: 2024/08/20 21:02:11 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_philo
 	u_int64_t		time_to_die;
 	u_int64_t		time_to_eat;
 	u_int64_t		time_to_sleep;
+	int				times_eaten;
 	int				number_of_times_each_philosopher_must_eat;
 }	t_philo;
 
@@ -46,7 +47,14 @@ typedef struct s_input_data
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	u_int64_t		start_time;
+	int				stop_simulation;
 }	t_input_data;
+
+typedef struct s_data_and_philo
+{
+	t_input_data	*data;
+	t_philo			philo;
+}	t_data_and_philo;
 
 u_int64_t			get_current_timestamp_in_ms(void);
 void				print_state_log(int id, char	*state_log);
@@ -71,7 +79,6 @@ void				set_philosophers_init_values(int argc, char **input_argv, \
 					t_input_data *data, t_philo *philos);
 int					check_all_philosophers_ate(t_philo *philos, \
 					t_input_data *data);
-// void				*routine_check_one_philo_died(void *arg);
 void				*routine_set_philosopher_dead(void *arg);
 void				create_dead_checker_thread(t_input_data *data);
 void				print_philo(t_philo *philo);

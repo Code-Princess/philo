@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
+/*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:14:00 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/20 11:41:30 by linda            ###   ########.fr       */
+/*   Updated: 2024/08/20 20:57:10 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_input_data	*input_data_init(char **input_argv)
 	return (data);
 }
 
-int	create_philo_threads(t_philo *philos, int nr_of_philos)
+/* int	create_philo_threads(t_philo *philos, int nr_of_philos)
 {
 	int			i;
 
@@ -34,6 +34,25 @@ int	create_philo_threads(t_philo *philos, int nr_of_philos)
 	while (i < nr_of_philos)
 	{
 		pthread_create(&philos[i].thread, NULL, &routine, &philos[i]);
+		i++;
+	}
+	i = 0;
+	while (i < nr_of_philos)
+	{
+		pthread_join(philos[i].thread, NULL);
+		i++;
+	}
+	return (0);
+} */
+
+int	create_philo_threads(t_philo *philos, int nr_of_philos)
+{
+	int			i;
+
+	i = 0;
+	while (i < nr_of_philos)
+	{
+		pthread_create(&philos[i].thread, NULL, &routine, &philos[i]); //TODO
 		i++;
 	}
 	i = 0;
@@ -55,7 +74,7 @@ t_philo	*philos_init(int nbr_of_philos, int argc, char **input_argv, \
 		return (NULL);
 	set_philosophers_init_values(argc, input_argv, data, philos);
 	create_philo_threads(philos, nbr_of_philos);
-print_philo(&philos[0]);
+// print_philo(&philos[0]);
 	return (philos);
 }
 

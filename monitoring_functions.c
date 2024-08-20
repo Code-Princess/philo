@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitoring_functions.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
+/*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:29:55 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/20 12:37:59 by linda            ###   ########.fr       */
+/*   Updated: 2024/08/20 20:50:58 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print_mutex_lock(t_philo *philo, char *state_log)
 {
 	if (philo->has_died == 0)
 	{
-		if (pthread_mutex_trylock(&philo->print_mutex) == 0)
+		if (pthread_mutex_lock(&philo->print_mutex) == 0)
 		{
 			print_state_log(philo->id_nr, state_log);
 			pthread_mutex_unlock(&philo->print_mutex);
