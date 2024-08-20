@@ -6,7 +6,7 @@
 /*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:14:00 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/18 13:41:11 by linda            ###   ########.fr       */
+/*   Updated: 2024/08/20 11:41:30 by linda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_philo	*philos_init(int nbr_of_philos, int argc, char **input_argv, \
 		return (NULL);
 	set_philosophers_init_values(argc, input_argv, data, philos);
 	create_philo_threads(philos, nbr_of_philos);
+print_philo(&philos[0]);
 	return (philos);
 }
 

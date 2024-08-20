@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine_functions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:46:59 by linda             #+#    #+#             */
-/*   Updated: 2024/08/08 13:35:52 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/20 12:56:23 by linda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+
 	while (philo->has_died == 0)
 	{
 		eating(philo);
 		sleeping(philo);
 		thinking(philo);
 	}
-	print_mutex_lock(philo, "died");
 	return (NULL);
 }
 

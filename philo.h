@@ -6,7 +6,7 @@
 /*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/18 13:39:39 by linda            ###   ########.fr       */
+/*   Updated: 2024/08/20 12:49:01 by linda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_input_data
 {
 	int				number_of_philosophers;
 	int				number_of_forks;
-	t_philo			**philos;
+	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	u_int64_t		start_time;
 }	t_input_data;
@@ -71,8 +71,10 @@ void				set_philosophers_init_values(int argc, char **input_argv, \
 					t_input_data *data, t_philo *philos);
 int					check_all_philosophers_ate(t_philo *philos, \
 					t_input_data *data);
-void				set_dead_mutex_lock(t_philo philosopher);
-void				*routine_check_one_philo_died(void *arg);
+// void				*routine_check_one_philo_died(void *arg);
+void				*routine_set_philosopher_dead(void *arg);
 void				create_dead_checker_thread(t_input_data *data);
+void				print_philo(t_philo *philo);
+int					one_philo_died(t_input_data *data);
 
 #endif

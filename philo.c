@@ -6,11 +6,13 @@
 /*   By: linda <linda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:40:53 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/18 13:04:07 by linda            ###   ########.fr       */
+/*   Updated: 2024/08/20 11:17:30 by linda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+#include "dev_helper_functions.h"
 
 int	main(int argc, char	*argv[])
 {
@@ -21,8 +23,7 @@ int	main(int argc, char	*argv[])
 		if (input_check(argc, argv) == 0)
 		{
 			data = input_data_init(argv);
-			data->philos = philos_init(data->number_of_philosophers, \
-				argc, argv, data);
+			data->philos = philos_init(data->number_of_philosophers, argc, argv, data);
 			create_dead_checker_thread(data);
 			// free_data(data); TODO: free functions
  		}
