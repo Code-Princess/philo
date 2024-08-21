@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:14:00 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/21 13:20:41 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:36:38 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ t_input_data	*input_data_init(char **input_argv)
 		return (NULL);
 	data->number_of_philosophers = ft_atoi(input_argv[1]);
 	data->number_of_forks = ft_atoi(input_argv[1]);
-	data->start_time_program = get_current_timestamp_in_ms(0);
+	data->start_time_program = get_current_timestamp_in_ms();
 	data->forks = forks_init(data->number_of_forks);
-	data->stop_simulation = 0;
 	return (data);
 }
 
@@ -46,18 +45,13 @@ t_input_data	*input_data_init(char **input_argv)
 	return (0);
 } */
 
-int	create_philo_threads(t_philo *philos, int nr_of_philos, t_input_data *data)
+int	create_philo_threads(t_philo *philos, int nr_of_philos)
 {
 	int			i;
-	t_data_and_philo *data_and_philo;
-	
-	data_and_philo = malloc(1 * sizeof(t_data_and_philo));
-	data_and_philo->data = data;
 	i = 0;
 	while (i < nr_of_philos)
 	{
-		data_and_philo->philo = &philos[i];
-		pthread_create(&philos[i].thread, NULL, &routine, data_and_philo); //TODO
+		pthread_create(&philos[i].thread, NULL, &routine, &philos[i]); //TODO
 		i++;
 	}
 	i = 0;
@@ -78,7 +72,7 @@ t_philo	*philos_init(int nbr_of_philos, int argc, char **input_argv, \
 	if (philos == NULL)
 		return (NULL);
 	set_philosophers_init_values(argc, input_argv, data, philos);
-	create_philo_threads(philos, nbr_of_philos, data);
+	create_philo_threads(philos, nbr_of_philos);
 	return (philos);
 }
 
@@ -96,18 +90,20 @@ void	set_philosophers_init_values(int argc, char **input_argv, \
 		philos[i].time_to_die = ft_atoi(input_argv[2]);
 		philos[i].time_to_eat = ft_atoi(input_argv[3]);
 		philos[i].time_to_sleep = ft_atoi(input_argv[4]);
-		philos[i].number_of_times_each_philosopher_must_eat = 0;
+		philos[i].start_time_program = data->start_time_program;
+		philos[i].number_of_times_each_philosopher_must_eat = -1;
 		if (argc == 6)
 			philos[i].number_of_times_each_philosopher_must_eat = \
 			ft_atoi(input_argv[5]);
 		philos[i].fork_left = &data->forks[i];
-		if (philos[i].id_nr >= 1)
+		if (philos[i].id_nr > 1)
 			philos[i].fork_right = &data->forks[i - 1];
 		else
 			philos[i].fork_right = &data->forks[data->number_of_philosophers \
 			- 1];
 		pthread_mutex_init(&(philos[i].print_mutex), NULL);
 		pthread_mutex_init(&(philos[i].eat_mutex), NULL);
+		pthread_mutex_init(&(philos[i].dead_mutex), NULL);
 		i++;
 	}
 }

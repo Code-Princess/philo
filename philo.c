@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:40:53 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/21 13:03:17 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:59:09 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,10 @@ int	main(int argc, char	*argv[])
 		if (input_check(argc, argv) == 0)
 		{
 			data = input_data_init(argv);
-printf("stop simulation1: %d\n", data->stop_simulation);
 			data->philos = philos_init(data->number_of_philosophers, argc, argv, data);
-printf("stop simulation2: %d\n", data->stop_simulation);
 			create_dead_checker_thread(data);
-printf("stop simulation3: %d\n", data->stop_simulation);
-			if (data->stop_simulation == 1)
-			{
+			if (one_philo_died(data) == 1)
 				return (0);
-			}
-			
 			// free_data(data); TODO: free functions
  		}
 		else

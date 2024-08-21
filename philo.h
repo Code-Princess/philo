@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/21 13:34:03 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:36:14 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_philo
 	u_int64_t		time_to_die;
 	u_int64_t		time_to_eat;
 	u_int64_t		time_to_sleep;
+	u_int64_t		start_time_program;
 	int				times_eaten;
 	int				number_of_times_each_philosopher_must_eat;
 }	t_philo;
@@ -47,14 +48,7 @@ typedef struct s_input_data
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	u_int64_t		start_time_program;
-	int				stop_simulation;
 }	t_input_data;
-
-typedef struct s_data_and_philo
-{
-	t_input_data	*data;
-	t_philo			*philo;
-}	t_data_and_philo;
 
 u_int64_t			get_current_timestamp_in_ms();
 // void				print_state_log(int id, char	*state_log);
@@ -68,7 +62,7 @@ int					input_check(int argc, char **input_argv);
 t_philo				*philos_init(int nbr_of_philos, int argc, \
 					char **input_argv, t_input_data *data);
 // int					create_philo_threads(t_philo *philos, int nr_of_philos);
-int					create_philo_threads(t_philo *philos, int nr_of_philos, t_input_data *data);
+int					create_philo_threads(t_philo *philos, int nr_of_philos);
 void				*routine(void *arg);
 void				free_data(t_input_data	*input_data);
 pthread_mutex_t		*forks_init(int nr_of_forks);
