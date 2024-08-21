@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:40:53 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/21 16:59:09 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:51:56 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char	*argv[])
 			create_dead_checker_thread(data);
 			if (one_philo_died(data) == 1)
 				return (0);
+				
 			// free_data(data); TODO: free functions
  		}
 		else

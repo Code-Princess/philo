@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/21 17:36:14 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:41:37 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct s_input_data
 }	t_input_data;
 
 u_int64_t			get_current_timestamp_in_ms();
-// void				print_state_log(int id, char	*state_log);
 void				print_state_log(int id, char	*state_log, u_int64_t start_time_program);
 t_input_data		*input_data_init(char **input_argv);
 int					ft_isspace(int c);
@@ -61,12 +60,10 @@ long				ft_atol(char *str);
 int					input_check(int argc, char **input_argv);
 t_philo				*philos_init(int nbr_of_philos, int argc, \
 					char **input_argv, t_input_data *data);
-// int					create_philo_threads(t_philo *philos, int nr_of_philos);
 int					create_philo_threads(t_philo *philos, int nr_of_philos);
 void				*routine(void *arg);
 void				free_data(t_input_data	*input_data);
 pthread_mutex_t		*forks_init(int nr_of_forks);
-// void				print_mutex_lock(t_philo *philo, char *state_log);
 void				print_mutex_lock(t_philo *philo, char *state_log, u_int64_t start_time_program);
 void				eating(t_philo *philosopher, u_int64_t start_time_program);
 void				ft_usleep(u_int64_t time_to_do_sth);
