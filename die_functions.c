@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:14:43 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/20 20:43:11 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/21 13:28:55 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	*routine_set_philosopher_dead(void *arg)
 		{
 			if (get_current_timestamp_in_ms() - data->philos[i].time_of_last_meal >= data->philos[i].time_to_die)
 			{
-				print_mutex_lock(&data->philos[i], "died");
+				print_mutex_lock(&data->philos[i], "died", data->start_time_program);
 				if (pthread_mutex_lock(&(data->philos[i].dead_mutex)) == 0)
 				{
 					data->philos[i].has_died = 1;

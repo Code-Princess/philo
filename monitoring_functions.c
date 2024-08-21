@@ -6,21 +6,21 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:29:55 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/20 20:50:58 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/21 13:26:35 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	print_state_log(int id, char	*state_log)
+void	print_state_log(int id, char	*state_log, u_int64_t start_time_program)
 {
 	long long	timestamp_in_ms;
 
-	timestamp_in_ms = get_current_timestamp_in_ms();
+	timestamp_in_ms = get_current_timestamp_in_ms() - start_time_program;
 	printf("%lld %d %s\n", timestamp_in_ms, id, state_log);
 }
 
-u_int64_t	get_current_timestamp_in_ms(void)
+u_int64_t	get_current_timestamp_in_ms()
 {
 	struct timeval	timestamp;
 	u_int64_t		timestamp_in_ms;
@@ -30,13 +30,13 @@ u_int64_t	get_current_timestamp_in_ms(void)
 	return (timestamp_in_ms);
 }
 
-void	print_mutex_lock(t_philo *philo, char *state_log)
+void	print_mutex_lock(t_philo *philo, char *state_log, u_int64_t start_time_program)
 {
 	if (philo->has_died == 0)
 	{
 		if (pthread_mutex_lock(&philo->print_mutex) == 0)
 		{
-			print_state_log(philo->id_nr, state_log);
+			print_state_log(philo->id_nr, state_log, start_time_program);
 			pthread_mutex_unlock(&philo->print_mutex);
 		}
 	}

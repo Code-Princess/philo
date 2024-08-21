@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/20 21:02:11 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/21 13:34:03 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,19 @@ typedef struct s_input_data
 	int				number_of_forks;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
-	u_int64_t		start_time;
+	u_int64_t		start_time_program;
 	int				stop_simulation;
 }	t_input_data;
 
 typedef struct s_data_and_philo
 {
 	t_input_data	*data;
-	t_philo			philo;
+	t_philo			*philo;
 }	t_data_and_philo;
 
-u_int64_t			get_current_timestamp_in_ms(void);
-void				print_state_log(int id, char	*state_log);
+u_int64_t			get_current_timestamp_in_ms();
+// void				print_state_log(int id, char	*state_log);
+void				print_state_log(int id, char	*state_log, u_int64_t start_time_program);
 t_input_data		*input_data_init(char **input_argv);
 int					ft_isspace(int c);
 int					ft_isdigit(int c);
@@ -66,15 +67,17 @@ long				ft_atol(char *str);
 int					input_check(int argc, char **input_argv);
 t_philo				*philos_init(int nbr_of_philos, int argc, \
 					char **input_argv, t_input_data *data);
-int					create_philo_threads(t_philo *philos, int nr_of_philos);
+// int					create_philo_threads(t_philo *philos, int nr_of_philos);
+int					create_philo_threads(t_philo *philos, int nr_of_philos, t_input_data *data);
 void				*routine(void *arg);
 void				free_data(t_input_data	*input_data);
 pthread_mutex_t		*forks_init(int nr_of_forks);
-void				print_mutex_lock(t_philo *philo, char *state_log);
-void				eating(t_philo *philosopher);
+// void				print_mutex_lock(t_philo *philo, char *state_log);
+void				print_mutex_lock(t_philo *philo, char *state_log, u_int64_t start_time_program);
+void				eating(t_philo *philosopher, u_int64_t start_time_program);
 void				ft_usleep(u_int64_t time_to_do_sth);
-void				sleeping(t_philo *philosopher);
-void				thinking(t_philo *philosopher);
+void				sleeping(t_philo *philosopher, u_int64_t start_time_program);
+void				thinking(t_philo *philosopher, u_int64_t start_time_program);
 void				set_philosophers_init_values(int argc, char **input_argv, \
 					t_input_data *data, t_philo *philos);
 int					check_all_philosophers_ate(t_philo *philos, \
