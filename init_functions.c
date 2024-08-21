@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:14:00 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/21 18:05:10 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:55:38 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,6 @@ t_input_data	*input_data_init(char **input_argv)
 	data->forks = forks_init(data->number_of_forks);
 	return (data);
 }
-
-/* int	create_philo_threads(t_philo *philos, int nr_of_philos)
-{
-	int			i;
-
-	i = 0;
-	while (i < nr_of_philos)
-	{
-		pthread_create(&philos[i].thread, NULL, &routine, &philos[i]);
-		i++;
-	}
-	i = 0;
-	while (i < nr_of_philos)
-	{
-		pthread_join(philos[i].thread, NULL);
-		i++;
-	}
-	return (0);
-} */
 
 int	create_philo_threads(t_philo *philos, int nr_of_philos)
 {
