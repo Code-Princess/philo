@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:14:43 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/21 18:56:00 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/21 19:14:15 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	one_philo_died(t_input_data *data)
 	while (i < data->number_of_philosophers)
 	{
 		if (data->philos[i].has_died == 1)
-			return (1);
+			{
+				printf("philo nr: %d has died: %d\n", data->philos[i].id_nr, data->philos[i].has_died);
+				return (1);
+			}
 		else
 			i++;
 	}
@@ -44,12 +47,11 @@ void	*routine_set_philosopher_dead(void *arg)
 
 	int	 i;
 
-	while(1)
-	{
+	
 		i = 0;
 		while (i < data->number_of_philosophers)
 		{
-			if ((get_current_timestamp_in_ms() - data->start_time_program) - data->philos[i].time_of_last_meal >= data->philos[i].time_to_die)
+			if (get_current_timestamp_in_ms() - data->philos[i].time_of_last_meal >= data->philos[i].time_to_die)
 			{
 				print_mutex_lock(&data->philos[i], "died");
 				if (pthread_mutex_lock(&(data->philos[i].dead_mutex)) == 0)
@@ -61,5 +63,5 @@ void	*routine_set_philosopher_dead(void *arg)
 			}
 			i++;
 		}
-	}
+	return (NULL);
 }
