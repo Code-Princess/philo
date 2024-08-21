@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:29:55 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/21 13:26:35 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:42:48 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ u_int64_t	get_current_timestamp_in_ms()
 	return (timestamp_in_ms);
 }
 
-void	print_mutex_lock(t_philo *philo, char *state_log, u_int64_t start_time_program)
+void	print_mutex_lock(t_philo *philo, char *state_log)
 {
 	if (philo->has_died == 0)
 	{
 		if (pthread_mutex_lock(&philo->print_mutex) == 0)
 		{
-			print_state_log(philo->id_nr, state_log, start_time_program);
+			print_state_log(philo->id_nr, state_log, philo->start_time_program);
 			pthread_mutex_unlock(&philo->print_mutex);
 		}
 	}

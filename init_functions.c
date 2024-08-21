@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:14:00 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/21 17:36:38 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:05:10 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	set_philosophers_init_values(int argc, char **input_argv, \
 	i = 0;
 	while (i < data->number_of_philosophers)
 	{
+		philos[i].number_of_philosophers = data->number_of_philosophers;
 		philos[i].id_nr = i + 1;
 		philos[i].has_died = 0;
 		philos[i].nr_of_meals = 0;
