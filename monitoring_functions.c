@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 13:29:55 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/21 23:13:39 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:02:44 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,11 @@ u_int64_t	get_current_timestamp_in_ms()
 
 void	print_mutex_lock(t_philo *philo, char *state_log)
 {
-	if (philo->has_died == 0)
+	if (stop_simulation_mutex_check(philo) == 1)
+		return;
+	if (pthread_mutex_lock(&philo->print_mutex) == 0)
 	{
-		if (pthread_mutex_lock(&philo->print_mutex) == 0)
-		{
-			print_state_log(philo->id_nr, state_log, philo->start_time_program);
-			pthread_mutex_unlock(&philo->print_mutex);
-		}
+		print_state_log(philo->id_nr, state_log, philo->start_time_program);
+		pthread_mutex_unlock(&philo->print_mutex);
 	}
 }

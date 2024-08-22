@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/21 19:54:11 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/22 18:30:14 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <limits.h>
 # include <unistd.h>
 # include <sys/types.h>
+
+
 
 typedef struct s_philo
 {
@@ -40,6 +42,8 @@ typedef struct s_philo
 	int				times_eaten;
 	int				number_of_times_each_philosopher_must_eat;
 	int				number_of_philosophers;
+	int				*stop_simulation;
+	pthread_mutex_t	stop_simulation_mutex;
 }	t_philo;
 
 typedef struct s_input_data
@@ -49,6 +53,9 @@ typedef struct s_input_data
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	u_int64_t		start_time_program;
+	pthread_t		dead_checker_thread;
+	int				stop_simulation;
+	pthread_t		all_eaten_checker_thread;
 }	t_input_data;
 
 u_int64_t			get_current_timestamp_in_ms();
@@ -76,6 +83,9 @@ int					all_philosophers_ate_nbr_of_meals(t_philo *philos);
 void				*routine_set_philosopher_dead(void *arg);
 void				create_dead_checker_thread(t_input_data *data);
 void				print_philo(t_philo *philo);
-int					one_philo_died(t_input_data *data);
+void				join_philo_threads(t_philo *philos, int nr_of_philos);
+int					stop_simulation_mutex_check(t_philo *philo);
+void 				create_all_eaten_checker_thread(t_input_data *data);
+void 				*routine_all_eaten_check(void *arg);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:14:00 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/22 12:07:50 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/22 18:30:28 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_input_data	*input_data_init(char **input_argv)
 	data->number_of_forks = ft_atoi(input_argv[1]);
 	data->start_time_program = get_current_timestamp_in_ms();
 	data->forks = forks_init(data->number_of_forks);
+	data->stop_simulation = 0;
+	pthread_create(&data->all_eaten_checker_thread, NULL, &routine_all_eaten_check, data);
 	return (data);
 }
 
@@ -35,13 +37,19 @@ int	create_philo_threads(t_philo *philos, int nr_of_philos)
 		pthread_create(&philos[i].thread, NULL, &routine, &philos[i]);
 		i++;
 	}
-	i = 0;
-	// while (i < nr_of_philos)
-	// {
-	// 	pthread_join(philos[i].thread, NULL);
-	// 	i++;
-	// }
 	return (0);
+}
+
+void join_philo_threads(t_philo *philos, int nr_of_philos)
+{
+	int			i;
+	i = 0;
+
+	while (i < nr_of_philos)
+	{
+		pthread_join(philos[i].thread, NULL);
+		i++;
+	}
 }
 
 t_philo	*philos_init(int nbr_of_philos, int argc, char **input_argv, \
@@ -66,6 +74,7 @@ void	set_philosophers_init_values(int argc, char **input_argv, \
 	while (i < data->number_of_philosophers)
 	{
 		philos[i].number_of_philosophers = data->number_of_philosophers;
+		philos[i].stop_simulation = &data->stop_simulation;
 		philos[i].id_nr = i + 1;
 		philos[i].has_died = 0;
 		philos[i].nr_of_meals = 0;
@@ -87,6 +96,7 @@ void	set_philosophers_init_values(int argc, char **input_argv, \
 		pthread_mutex_init(&(philos[i].print_mutex), NULL);
 		pthread_mutex_init(&(philos[i].eat_mutex), NULL);
 		pthread_mutex_init(&(philos[i].dead_mutex), NULL);
+		pthread_mutex_init(&(philos[i].stop_simulation_mutex), NULL);
 		i++;
 	}
 }
