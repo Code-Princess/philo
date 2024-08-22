@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:46:59 by linda             #+#    #+#             */
-/*   Updated: 2024/08/22 19:57:42 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/22 22:46:09 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	*routine(void *arg)
 {
 	t_philo *philo;
 	philo = (t_philo *)arg;
-	while (*philo->stop_simulation == 0)
+	while (stop_simulation_mutex_check(philo) == 0)
 	{
 		
 		if (philo->id_nr % 2 == 0)
 		{
 			thinking(philo);
-			// usleep(philo->time_to_eat / 2);
+			ft_usleep(philo->time_to_eat / 2);
 		}
 		while (philo->has_died == 0)
 		{

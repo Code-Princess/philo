@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:14:00 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/22 18:30:28 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/22 23:01:58 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_input_data	*input_data_init(char **input_argv)
 	data->start_time_program = get_current_timestamp_in_ms();
 	data->forks = forks_init(data->number_of_forks);
 	data->stop_simulation = 0;
-	pthread_create(&data->all_eaten_checker_thread, NULL, &routine_all_eaten_check, data);
+	data->all_eaten = 0;
 	return (data);
 }
 
@@ -82,10 +82,10 @@ void	set_philosophers_init_values(int argc, char **input_argv, \
 		philos[i].time_to_eat = ft_atoi(input_argv[3]);
 		philos[i].time_to_sleep = ft_atoi(input_argv[4]);
 		philos[i].start_time_program = data->start_time_program;
-		philos[i].number_of_times_each_philosopher_must_eat = -1;
+		philos[i].minimum_number_of_meals = -1;
 		philos[i].time_of_last_meal = get_current_timestamp_in_ms();
 		if (argc == 6)
-			philos[i].number_of_times_each_philosopher_must_eat = \
+			philos[i].minimum_number_of_meals = \
 			ft_atoi(input_argv[5]);
 		philos[i].fork_left = &data->forks[i];
 		if (philos[i].id_nr > 1)
@@ -97,6 +97,7 @@ void	set_philosophers_init_values(int argc, char **input_argv, \
 		pthread_mutex_init(&(philos[i].eat_mutex), NULL);
 		pthread_mutex_init(&(philos[i].dead_mutex), NULL);
 		pthread_mutex_init(&(philos[i].stop_simulation_mutex), NULL);
+		pthread_mutex_init(&(philos[i].nr_of_meals_mutex), NULL);
 		i++;
 	}
 }
