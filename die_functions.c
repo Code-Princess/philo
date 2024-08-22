@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:14:43 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/22 17:59:54 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/22 19:45:05 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,13 @@ void	*routine_set_philosopher_dead(void *arg)
 			if (get_current_timestamp_in_ms() - data->philos[i].time_of_last_meal >= data->philos[i].time_to_die)
 			{
 				print_mutex_lock(&data->philos[i], "died");
-				if (pthread_mutex_lock(&(data->philos[i].dead_mutex)) == 0)
-				{
-					data->philos[i].has_died = 1;
-					pthread_mutex_unlock(&(data->philos[i].dead_mutex));
-					if (pthread_mutex_lock(&(data->philos[i].stop_simulation_mutex)) == 0)
-					{	
-						data->stop_simulation = 1;
-						pthread_mutex_unlock(&(data->philos[i].stop_simulation_mutex));
-						break ;
-					}
-				}
+				pthread_mutex_lock(&(data->philos[i].dead_mutex));
+				data->philos[i].has_died = 1;
+				pthread_mutex_unlock(&(data->philos[i].dead_mutex));
+				pthread_mutex_lock(&(data->philos[i].stop_simulation_mutex));
+				data->stop_simulation = 1;
+				pthread_mutex_unlock(&(data->philos[i].stop_simulation_mutex));
+				break ;
 			}
 			i++;
 		}
