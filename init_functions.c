@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:14:00 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/21 18:55:38 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/22 12:07:50 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ int	create_philo_threads(t_philo *philos, int nr_of_philos)
 	i = 0;
 	while (i < nr_of_philos)
 	{
-		pthread_create(&philos[i].thread, NULL, &routine, &philos[i]); //TODO
+		pthread_create(&philos[i].thread, NULL, &routine, &philos[i]);
 		i++;
 	}
 	i = 0;
-	while (i < nr_of_philos)
-	{
-		pthread_join(philos[i].thread, NULL);
-		i++;
-	}
+	// while (i < nr_of_philos)
+	// {
+	// 	pthread_join(philos[i].thread, NULL);
+	// 	i++;
+	// }
 	return (0);
 }
 
@@ -74,6 +74,7 @@ void	set_philosophers_init_values(int argc, char **input_argv, \
 		philos[i].time_to_sleep = ft_atoi(input_argv[4]);
 		philos[i].start_time_program = data->start_time_program;
 		philos[i].number_of_times_each_philosopher_must_eat = -1;
+		philos[i].time_of_last_meal = get_current_timestamp_in_ms();
 		if (argc == 6)
 			philos[i].number_of_times_each_philosopher_must_eat = \
 			ft_atoi(input_argv[5]);
