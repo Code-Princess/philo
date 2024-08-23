@@ -6,7 +6,7 @@
 #    By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/30 16:41:26 by llacsivy          #+#    #+#              #
-#    Updated: 2024/08/22 22:17:34 by llacsivy         ###   ########.fr        #
+#    Updated: 2024/08/23 16:04:27 by llacsivy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,21 +30,21 @@ NAME		:=	philo
 CFLAGS		=	-Wall -Wextra -Werror -pthread
 SRCS		:=	philo.c monitoring_functions.c init_functions.c \
 				utils_functions.c input_check_functions.c routine_functions.c \
-				free_functions.c \
-				die_functions.c
+				free_functions.c join_thread_functions.c \
+				stop_simulation_check_functions.c init_philosophers_functions.c
 				
 OBJS 		=	${SRCS:.c=.o}
+
 %.o : %.c
-	cc -g $(CFLAGS)  -c $< -o $@
-# cc $(CFLAGS)  -c $< -o $@
+	cc $(CFLAGS)  -c $< -o $@
 
 all:	$(NAME)
 
-$(NAME):	$(OBJS)
-	cc $(CFLAGS) $(OBJS) -o $(NAME)
-
 # $(NAME):	$(OBJS)
-# 	cc $(CFLAGS) $(OBJS) -o $(NAME) $(LEAK_SANITIZER)
+# 	cc $(CFLAGS) $(OBJS) -o $(NAME)
+
+$(NAME):	$(OBJS)
+	cc $(CFLAGS) $(OBJS) -o $(NAME) $(LEAK_SANITIZER)
 
 clean:
 	rm -f $(OBJS)
