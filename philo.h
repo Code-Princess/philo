@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/23 15:58:15 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/23 17:02:17 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ t_philo				*philos_init(int nbr_of_philos, int argc, \
 					char **input_argv, t_input_data *data);
 int					create_philo_threads(t_philo *philos, int nr_of_philos);
 void				*routine(void *arg);
-void				free_data(t_input_data	*input_data);
 pthread_mutex_t		*forks_init(int nr_of_forks);
 void				print_mutex_lock(t_philo *philo, char *state_log);
 void				eating(t_philo *philosopher);
@@ -90,5 +89,6 @@ void				*routine_stop_simulation_check(void *arg);
 void				check_all_philos_ate(t_input_data	*data);
 void				check_one_philo_died(t_input_data *data);
 void				init_mutexes(t_philo *philos);
+void				destroy_forks(int number_of_forks, pthread_mutex_t	*forks);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:40:53 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/23 15:32:19 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/23 17:09:01 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	main(int argc, char	*argv[])
 			create_checker_thread(data);
 			pthread_join(data->checker_thread, NULL);
 			join_philo_threads(data->philos, data->nr_of_philos);
-			// free_data(data); TODO: free functions
+			destroy_forks(data->number_of_forks, data->forks);
+			free(data->forks);
+			free(data->philos);
+			free(data);
  		}
 		else
 			return (printf("Error\nInvalid input arguments\n"), 1);
