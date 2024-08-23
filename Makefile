@@ -6,25 +6,9 @@
 #    By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/30 16:41:26 by llacsivy          #+#    #+#              #
-#    Updated: 2024/08/23 17:09:48 by llacsivy         ###   ########.fr        #
+#    Updated: 2024/08/23 17:12:54 by llacsivy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-UNAME_S := $(shell uname -s)
-
-ifeq ($(UNAME_S), Darwin)
-	OS_TYPE = MACOS
-endif
-ifeq ($(UNAME_S), Linux)
-	OS_TYPE = LINUX
-endif
-
-ifeq ($(OS_TYPE), MACOS)
-	LEAK_SANITIZER = /Users/llacsivy/LeakSanitizer/liblsan.dylib
-endif
-ifeq ($(OS_TYPE), LINUX)
-	LEAK_SANITIZER = /Users/llacsivy/LeakSanitizer/liblsan.so
-endif
 
 NAME		:=	philo
 CFLAGS		=	-Wall -Wextra -Werror -pthread
@@ -40,11 +24,8 @@ OBJS 		=	${SRCS:.c=.o}
 
 all:	$(NAME)
 
-# $(NAME):	$(OBJS)
-# 	cc $(CFLAGS) $(OBJS) -o $(NAME)
-
 $(NAME):	$(OBJS)
-	cc $(CFLAGS) $(OBJS) -o $(NAME) $(LEAK_SANITIZER)
+	cc $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)
