@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:40:53 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/23 17:09:01 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/23 17:37:10 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char	*argv[])
 {
-	static t_input_data		*data;
+	t_input_data		*data;
 
 	if (argc == 5 || argc == 6)
 	{
@@ -29,7 +29,7 @@ int	main(int argc, char	*argv[])
 			free(data->forks);
 			free(data->philos);
 			free(data);
- 		}
+		}
 		else
 			return (printf("Error\nInvalid input arguments\n"), 1);
 	}
