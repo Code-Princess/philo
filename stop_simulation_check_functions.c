@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 13:14:43 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/23 19:05:23 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/25 13:42:18 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	*routine_stop_simulation_check(void *arg)
 	usleep(100);
 	while (data->stop_simulation == 0)
 	{
-		
 		check_one_philo_died(data);
 		check_all_philos_ate(data);
 	}
@@ -65,7 +64,7 @@ void	check_all_philos_ate(t_input_data	*data)
 void	check_one_philo_died(t_input_data *data)
 {
 	int				i;
-	u_int64_t 		last_meal_time;
+	u_int64_t		last_meal_time;
 
 	i = 0;
 	while (i < data->nr_of_philos)

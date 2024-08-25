@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/23 18:49:21 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/25 13:48:46 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_philo
 	int				nr_of_meals;
 	pthread_mutex_t	nr_of_meals_mutex;	
 	u_int64_t		time_of_last_meal;
-	pthread_mutex_t time_of_last_meal_mutex;
+	pthread_mutex_t	time_of_last_meal_mutex;
 	pthread_t		thread;
 	pthread_mutex_t	*fork_left;
 	pthread_mutex_t	*fork_right;
@@ -89,8 +89,9 @@ void				*routine_set_all_philos_eaten(void *arg);
 void				*routine_stop_simulation_check(void *arg);
 void				check_all_philos_ate(t_input_data	*data);
 void				check_one_philo_died(t_input_data *data);
-void				init_mutexes(t_philo *philos);
+void				init_mutexes(t_philo *philos, int nr_of_philos);
 void				destroy_forks(int number_of_forks, pthread_mutex_t	*forks);
-u_int64_t 			get_last_meal_time(t_philo *philo);
+u_int64_t			get_last_meal_time(t_philo *philo);
+void				set_last_meal_time(t_philo *philo);
 
 #endif
