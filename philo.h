@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/25 13:48:46 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/25 14:46:07 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,10 @@ void				sleeping(t_philo *philosopher);
 void				thinking(t_philo *philosopher);
 void				set_philos_values(int argc, char **input_argv, \
 					t_input_data *data, t_philo *philos);
-int					all_philosophers_ate_nbr_of_meals(t_philo *philos);
-void				*routine_set_philosopher_dead(void *arg);
-void				create_dead_checker_thread(t_input_data *data);
 void				print_philo(t_philo *philo);
 void				join_philo_threads(t_philo *philos, int nr_of_philos);
 int					stop_simulation_mutex_check(t_philo *philo);
 void				create_checker_thread(t_input_data *data);
-void				*routine_set_all_philos_eaten(void *arg);
 void				*routine_stop_simulation_check(void *arg);
 void				check_all_philos_ate(t_input_data	*data);
 void				check_one_philo_died(t_input_data *data);
