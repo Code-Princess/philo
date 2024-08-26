@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:41:05 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/25 14:46:07 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/26 17:13:10 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,21 @@ typedef struct s_philo
 {
 	int				id_nr;
 	int				nr_of_meals;
-	pthread_mutex_t	nr_of_meals_mutex;	
+	pthread_mutex_t	*nr_of_meals_mutex;	
 	u_int64_t		time_of_last_meal;
-	pthread_mutex_t	time_of_last_meal_mutex;
+	pthread_mutex_t	*time_of_last_meal_mutex;
 	pthread_t		thread;
 	pthread_mutex_t	*fork_left;
 	pthread_mutex_t	*fork_right;
-	pthread_mutex_t	print_mutex;
-	pthread_mutex_t	eat_mutex;
+	pthread_mutex_t	*print_mutex;
 	u_int64_t		time_to_die;
 	u_int64_t		time_to_eat;
 	u_int64_t		time_to_sleep;
 	u_int64_t		start_time_program;
 	int				times_eaten;
-	int				nr_of_philos;
+	int				*nr_of_philos;
+	pthread_mutex_t	*stop_simulation_mutex;
 	int				*stop_simulation;
-	pthread_mutex_t	stop_simulation_mutex;
 	int				minimum_number_of_meals;
 }	t_philo;
 
@@ -51,10 +50,13 @@ typedef struct s_input_data
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	u_int64_t		start_time_program;
-	pthread_t		dead_checker_thread;
 	int				stop_simulation;
 	int				all_eaten;
 	pthread_t		checker_thread;
+	pthread_mutex_t	stop_simulation_mutex;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	nr_of_meals_mutex;	
+	pthread_mutex_t	time_of_last_meal_mutex;
 }	t_input_data;
 
 u_int64_t			get_current_timestamp_in_ms(void);
@@ -85,9 +87,9 @@ void				create_checker_thread(t_input_data *data);
 void				*routine_stop_simulation_check(void *arg);
 void				check_all_philos_ate(t_input_data	*data);
 void				check_one_philo_died(t_input_data *data);
-void				init_mutexes(t_philo *philos, int nr_of_philos);
 void				destroy_forks(int number_of_forks, pthread_mutex_t	*forks);
 u_int64_t			get_last_meal_time(t_philo *philo);
 void				set_last_meal_time(t_philo *philo);
+void				set_philo_mutexes(t_philo *philo, t_input_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:46:59 by linda             #+#    #+#             */
-/*   Updated: 2024/08/25 13:43:59 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/26 17:08:07 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	eating(t_philo *philosopher)
 		return ;
 	pthread_mutex_lock(philosopher->fork_left);
 	print_mutex_lock(philosopher, "has taken a fork");
-	if (philosopher->nr_of_philos == 1)
+	if (*philosopher->nr_of_philos == 1)
 	{
 		ft_usleep(philosopher->time_to_die);
 		pthread_mutex_unlock(philosopher->fork_left);
@@ -48,12 +48,10 @@ void	eating(t_philo *philosopher)
 	}
 	pthread_mutex_lock(philosopher->fork_right);
 	print_mutex_lock(philosopher, "has taken a fork");
-	pthread_mutex_lock(&philosopher->eat_mutex);
 	print_mutex_lock(philosopher, "is eating");
 	set_last_meal_time(philosopher);
 	ft_usleep(philosopher->time_to_eat);
 	philosopher->nr_of_meals++;
-	pthread_mutex_unlock(&philosopher->eat_mutex);
 	pthread_mutex_unlock(philosopher->fork_left);
 	pthread_mutex_unlock(philosopher->fork_right);
 }

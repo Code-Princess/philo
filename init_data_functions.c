@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:14:00 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/25 13:56:50 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/26 17:09:33 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ t_input_data	*input_data_init(char **input_argv)
 	data->forks = forks_init(data->number_of_forks);
 	data->stop_simulation = 0;
 	data->all_eaten = 0;
+	pthread_mutex_init(&data->stop_simulation_mutex, NULL);
+	pthread_mutex_init(&data->print_mutex, NULL);
+	pthread_mutex_init(&data->nr_of_meals_mutex, NULL);
+	pthread_mutex_init(&data->time_of_last_meal_mutex, NULL);
 	return (data);
 }
 
