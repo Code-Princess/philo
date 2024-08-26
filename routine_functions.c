@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 20:46:59 by linda             #+#    #+#             */
-/*   Updated: 2024/08/26 17:08:07 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/26 18:03:15 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ void	eating(t_philo *philosopher)
 	print_mutex_lock(philosopher, "is eating");
 	set_last_meal_time(philosopher);
 	ft_usleep(philosopher->time_to_eat);
+	pthread_mutex_lock(philosopher->nr_of_meals_mutex);
 	philosopher->nr_of_meals++;
+	pthread_mutex_unlock(philosopher->nr_of_meals_mutex);
 	pthread_mutex_unlock(philosopher->fork_left);
 	pthread_mutex_unlock(philosopher->fork_right);
 }
