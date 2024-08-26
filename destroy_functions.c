@@ -6,7 +6,7 @@
 /*   By: llacsivy <llacsivy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 13:06:45 by llacsivy          #+#    #+#             */
-/*   Updated: 2024/08/23 17:09:57 by llacsivy         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:45:16 by llacsivy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,4 @@ void	destroy_forks(int number_of_forks, pthread_mutex_t	*forks)
 		pthread_mutex_destroy(&forks[i]);
 		i++;
 	}
-	pthread_mutex_destroy(forks);
 }
