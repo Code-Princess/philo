@@ -2,7 +2,7 @@
 I’ve implemented a simulation of the Dining Philosophers Problem in C using threads and mutexes. In this problem, philosophers sit around a table with a bowl of spaghetti and alternate between eating, thinking, and sleeping. To eat, a philosopher needs two forks—one from their left and one from their right. After eating, they return the forks and start sleeping, then resume thinking. The simulation ends if a philosopher starves. The goal is to ensure no philosopher starves, as they don't communicate or know if another is starving.
 
 ## Input arguments
-My program accepts following inputs arguments:
+Do not run this programm with more than 200 philosophers. Do not run with time_to_die or time_to_eat or time_to_sleep set to values lower than 60 ms. My program accepts following inputs arguments:
 | Argument                                | Description                                                                                         |
 |-----------------------------------------|-----------------------------------------------------------------------------------------------------|
 | **number_of_philosophers**              | The number of philosophers and forks.                                                               |
@@ -23,13 +23,26 @@ Please note that this program is only compatible with Linux or macOS. Ensure tha
 ## Installation
 To install the project follow these steps in your terminal:
 ```
-git clone git@github.com:Code-Princess/berry-princess-game.git
-cd berry-princess-game
+git clone git@github.com:Code-Princess/philo.git
+cd philo
 make
 ```
-## Run the game
-To run the game, use this command in your terminal:
+## Run the simulation
+To run the simulation, use this command in your terminal. Here are some input arguments and the expected results:
 ```
-./so_long maps/map_04.ber
+./philo 4 310 200 100
 ```
-You can replace *maps/map_04.ber* with the path to your desired map file.
+```
+./philo 5 800 200 200 7
+```
+| Test Case  | Command                     | Expected Result                                                                      |
+|------------|-----------------------------|--------------------------------------------------------------------------------------|
+| Test 1     | `./philo 1 800 200 200`     | The philosopher should not eat and should die.                                       |
+| Test 2     | `./philo 5 800 200 200`     | No philosopher should die.                                                           |
+| Test 3     | `./philo 5 800 200 200 7`   | No philosopher should die, and the simulation should stop when each has eaten 7 times.|
+| Test 4     | `./philo 4 410 200 200`     | No philosopher should die.                                                           |
+| Test 5     | `./philo 4 310 200 100`     | One philosopher should die.                                                          |
+
+
+
+
