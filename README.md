@@ -1,12 +1,10 @@
 # Dining Philosophers Problem
 I’ve implemented a simulation of the Dining Philosophers Problem in C using threads and mutexes. In this problem, philosophers sit around a table with a bowl of spaghetti and alternate between eating, thinking, and sleeping. To eat, a philosopher needs two forks—one from their left and one from their right. After eating, they return the forks and start sleeping, then resume thinking. The simulation ends if a philosopher starves. The goal is to ensure no philosopher starves, as they don't communicate or know if another is starving.
-
-**PLACEHOLDER**
-## 👀 YouTube Video: Code-Princess/Mein erstes selbst programmiertes 2D Computer Spiel/Berry-Princess-Game/Retro-Style🍓👸
+## 👀 YouTube Video: 👑💻 Code-Princess/Das Problem der speisenden Philosophen/The Dining Philosophers Problem/philo 42/🍝🍴
 <!-- YouTube video cards from https://github.com/DenverCoder1/github-readme-youtube-cards -->
 <!-- https://ytcards.demolab.com/?id=<video ID>&title=<video+title>&lang=en&timestamp=<video publish date in Unix time format>&background_color=%230d1117&title_color=%23ffffff&stats_color=%23dedede&max_title_lines=1&width=250&border_radius=5&duration=<video duration in seconds> "<video title>") -->
 <!-- BEGIN YOUTUBE-CARDS -->
-[![Code-Princess/Mein erstes selbst programmiertes 2D Computer Spiel/Berry-Princess-Game/Retro-Style](https://ytcards.demolab.com/?id=uH6tfKEWT6Y&title=Code-Princess/Mein+erstes+selbst+programmiertes+2D+Computer+Spiel/Berry-Princess-Game/Retro-Style&lang=en&timestamp=1721426400&background_color=%230d1117&title_color=%23ffffff&stats_color=%23dedede&max_title_lines=1&width=850&border_radius=5&duration=262 "Code-Princess/Mein erstes selbst programmiertes 2D Computer Spiel/Berry-Princess-Game/Retro-Style")](https://youtu.be/uH6tfKEWT6Y?si=ZQqomfBc4khFFNkN)
+[![👑💻 Code-Princess/Das Problem der speisenden Philosophen/The Dining Philosophers Problem/philo 42/🍝🍴](https://ytcards.demolab.com/?id=A2eN0QnBIZg&title=Code-Princess/Das+Problem+der+speisenden+Philosophen/The+Dining+Philosophers+Problem/philo+42/&lang=en&timestamp=1731625200&background_color=%230d1117&title_color=%23ffffff&stats_color=%23dedede&max_title_lines=1&width=850&border_radius=5&duration=627 "Code-Princess/Das Problem der speisenden Philosophen/The Dining Philosophers Problem/philo 42/")](https://youtu.be/A2eN0QnBIZg?si=ZQqomfBc4khFFNkN)
 <!-- END YOUTUBE-CARDS -->
 ## Input arguments
 Do not run this programm with more than 200 philosophers. Do not run with time_to_die or time_to_eat or time_to_sleep set to values lower than 60 ms. My program accepts following inputs arguments:
