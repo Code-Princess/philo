@@ -31,10 +31,15 @@ To run the simulation, use this command in your terminal. You can either have 4 
 ```
 ./philo 4 310 200 100
 ```
+![Screenshot 2024-09-21_Bildschirmaisgabe](https://github.com/user-attachments/assets/10b01dea-f215-4e56-a0f9-8baefbfd3427)
+
 Or you can have 5 input arguments, e.g.
 ```
 ./philo 5 800 200 200 7
 ```
+https://nafuka11.github.io/philosophers-visualizer/
+![Screenshot 2024-09-21_visualizer](https://github.com/user-attachments/assets/d742c69a-fb84-40d7-847f-007916e4ba40)
+
 Here are some input arguments and the expected results:
 | Test Case  | Command                     | Expected Result                                                                      |
 |------------|-----------------------------|--------------------------------------------------------------------------------------|
